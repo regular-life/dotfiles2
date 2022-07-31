@@ -16,7 +16,7 @@ install_cmd () {
 add_user () {
   pacman -S sudo
   read -p "Enter username: " username
-  useradd -m -G audio,wheel,video -s /bin/bash $username 
+  useradd -m -G audio,wheel,video -s /bin/zsh $username 
   passwd $username  
   echo '$username ALL=(ALL:ALL) ALL' >> /etc/sudoers
 }
@@ -24,8 +24,9 @@ add_user () {
 # install zsh and ohmyzsh
 install_ohmyzsh () {
   install_cmd "zsh"
+  su -l $username  --command="
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  chsh -s /bin/zsh
+  "
   install_cmd zsh-autosuggestions zsh-syntax-highlighting 
 }
 
@@ -110,11 +111,12 @@ install_apps () {
 
 
 #######
+add_user
 if [[ $os_name = "Arch Linux" ]]; then
    install_yay 
 fi
-install_xorg
 install_ohmyzsh
+install_xorg
 install_audio
 install_dwm
 install_apps
