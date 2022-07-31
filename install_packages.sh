@@ -20,9 +20,16 @@ add_user () {
   passwd $username  
   echo '$username ALL=(ALL:ALL) ALL' >> /etc/sudoers
 }
+# check if a user was made using add_user and if not then input a user
+user_check () {
+  if [[ -z "$(username)" ]]; then
+    read -p "Enter username of a pre-existing user with sudo privelages: " username
+  fi
+}
 
 # install zsh and ohmyzsh
 install_ohmyzsh () {
+  user_check
   install_cmd "zsh"
   su -l $username  --command="
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -61,7 +68,7 @@ install_dwm () {
 install_st () {
    if ! [[ -d "$PWD/st-flexipatch" ]]; then
     echo "st-flexipatch submodule not found"
-  else
+  els
     cd $PWD/st-flexipatch
     sudo make clean install
   fi 
@@ -79,6 +86,7 @@ install_dmenu () {
 
 # install yay
 install_yay () {
+  user_check
   pacman -S --needed git base-devel
   su -l $username  --command="
   sudo -S echo
