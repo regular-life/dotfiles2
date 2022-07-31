@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# RUN THIS SCRIPT FROM A USER WITH A SUDOERS ENTRY
 os_name=$(grep '^NAME=' /etc/os-release | grep -o '".*"' | tr -d '"')
 
 install_cmd () {
@@ -10,11 +12,13 @@ install_cmd () {
   fi
 }
 
-# add new user
+# add new user and add it to sudo group
 add_user () {
+  pacman -S sudo
   read -p "Enter username: " username
-  sudo user add $username
-  sudo passwd $username  
+  useradd -m -G audio,wheel,video -s /bin/bash $username 
+  passwd $username  
+  echo '$username ALL=(ALL:ALL) ALL' >> /etc/sudoers
 }
 
 # install zsh and ohmyzsh
@@ -22,6 +26,7 @@ install_ohmyzsh () {
   install_cmd "zsh"
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   chsh -s /bin/zsh
+  install_cmd zsh-autosuggestions zsh-syntax-highlighting 
 }
 
 # install x and x related stuff
@@ -43,7 +48,7 @@ install_audio () {
 
 # install dwm
 install_dwm () {
-  if ! [[ -d "$PWD/dwm-flexipatch" ]] then
+  if ! [[ -d "$PWD/dwm-flexipatch" ]]; then
     echo "dwm-flexipatch submodule not found"
   else
     cd $PWD/dwm-flexipatch
@@ -53,7 +58,7 @@ install_dwm () {
 
 # install st 
 install_st () {
-   if ! [[ -d "$PWD/st-flexipatch" ]] then
+   if ! [[ -d "$PWD/st-flexipatch" ]]; then
     echo "st-flexipatch submodule not found"
   else
     cd $PWD/st-flexipatch
@@ -61,12 +66,25 @@ install_st () {
   fi 
 }
 
+# install dmnenu 
+install_dmenu () {
+   if ! [[ -d "$PWD/dmenu-flexipatch" ]]; then
+    echo "dmenu-flexipatch submodule not found"
+  else
+    cd $PWD/dmenu-flexipatch
+    sudo make clean install
+  fi 
+}
+
 # install yay
 install_yay () {
   pacman -S --needed git base-devel
+  su -l $username  --command="
+  sudo -S echo
   git clone https://aur.archlinux.org/yay-bin.git
   cd yay-bin
-  makepkg -si
+  makepkg -si --noconfirm
+  "
 }
 
 # install some basic useful apps
