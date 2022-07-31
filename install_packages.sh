@@ -22,7 +22,7 @@ add_user () {
 }
 # check if a user was made using add_user and if not then input a user
 user_check () {
-  if [[ -z "$(username)" ]]; then
+  if [[ -z "$username" ]]; then
     read -p "Enter username of a pre-existing user with sudo privelages: " username
   fi
 }
@@ -31,9 +31,7 @@ user_check () {
 install_ohmyzsh () {
   user_check
   install_cmd "zsh"
-  su -l $username  --command="
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  "
+  sudo -u $username sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   install_cmd zsh-autosuggestions zsh-syntax-highlighting 
 }
 
