@@ -43,14 +43,22 @@ install_audio () {
 
 # install dwm
 install_dwm () {
-  cd $PWD/dwm-flexipatch
-  sudo make clean install
+  if ! [[ -d "$PWD/dwm-flexipatch" ]] then
+    echo "dwm-flexipatch submodule not found"
+  else
+    cd $PWD/dwm-flexipatch
+    sudo make clean install
+  fi 
 }
 
 # install st 
 install_st () {
-  cd $PWD/st-flexipatch
-  sudo make clean install
+   if ! [[ -d "$PWD/st-flexipatch" ]] then
+    echo "st-flexipatch submodule not found"
+  else
+    cd $PWD/st-flexipatch
+    sudo make clean install
+  fi 
 }
 
 # install yay
