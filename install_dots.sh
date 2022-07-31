@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# run this inside the repo folder
 echo $(pwd)
 
 current_dir=$(pwd)
@@ -8,7 +9,6 @@ olddir=~/dotfiles_old             # old dotfiles backup directory
 dotfiles=$(ls ./dots/)
 echo $dotfiles
 mkdir $olddir
- done
 
 mv ~/.zshrc $olddir/ 
 mv ~/.xinitrc $olddir/ 
@@ -25,7 +25,6 @@ for file in $dotfiles; do
       ln --verbose -s $current_dir/dots/$file ~/.config/$file
     fi 
 done
-
 
 # for xorg stuff and zsh
 for file in $(ls $(pwd)/dots/xorg/); do
@@ -44,6 +43,10 @@ for file in $(ls $(pwd)/dots/xorg/); do
 done
 ln -s $current_dir/dots/zshrc ~/.zshrc
 
+# for fonts
+mkdir -p ~/.fonts
+cp -r $(pwd)/fonts ~/.fonts
+fc-cache -fv
 
 # fix bitmap fonts (FOR VOID LINUX ONLY)
 os_name=$(grep '^NAME=' /etc/os-release | grep -o '".*"' | tr -d '"')
@@ -57,7 +60,6 @@ if [[ -d $HOME/.local/bin ]]; then
 else
     mkdir $HOME/.local/bin && cp -r ./bin/* $HOME/.local/bin
 fi
-
 
 # sublime text configuration
 if [[ -d $HOME/.config/sublime-text-3/Packages ]]; then

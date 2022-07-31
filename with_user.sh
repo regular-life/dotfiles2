@@ -40,8 +40,12 @@ install_dmenu () {
 
 # install zsh and ohmyzsh
 install_ohmyzsh () {
-  user_check
   install_cmd "zsh"
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  install_cmd zsh-autosuggestions zsh-syntax-highlighting 
+  install_cmd sh-autosuggestions zsh-syntax-highlighting 
 }
+
+install_ohmyzsh
+install_dwm
+install_dmenu
+install_st
