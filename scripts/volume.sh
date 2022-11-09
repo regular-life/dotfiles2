@@ -49,17 +49,17 @@ case $1 in
 	# Set the volume on (if it was muted)
 	amixer set Master on > /dev/null
 	# Up the volume (+ 5%)
-	amixer sset Master 5%+ > /dev/null
+	amixer sset Master 3%+ > /dev/null
 	send_notification
 	;;
     down)
 	amixer set Master on > /dev/null
-	amixer sset Master 5%- > /dev/null
+	amixer sset Master 3%- > /dev/null
 	send_notification
 	;;
     mute)
     	# Toggle mute
-	amixer set Master 1+ toggle > /dev/null
+	 pactl set-sink-mute 0 toggle > /dev/null
 	if is_mute ; then
     DIR=`dirname "$0"`
     $DIR/notify-send.sh "婢 x" --replace=555 -u normal "Mute" -t 2000

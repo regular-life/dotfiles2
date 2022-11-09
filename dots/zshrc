@@ -15,6 +15,10 @@ export ZSH=$HOME/.oh-my-zsh/
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 ZSH_THEME="mh"
 
+rc () {
+  rustscan -a $1 -- -vv -sC -sV -sS -T4 -oN ~/code/thm/$2
+}
+alias vim='nvim'
 alias music1='tmux new-session "tmux source-file ~/.config/ncmpcpp/tmux_session"' # Tmux session with ncmpcpp and cover art
 alias paci='sudo pacman -S' 
 alias compile='sudo make clean install' 
