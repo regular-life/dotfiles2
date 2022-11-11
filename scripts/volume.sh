@@ -47,14 +47,18 @@ $DIR/notify-send.sh "$volume "$icon_name""     "" -t 2000 -h int:value:"$volume"
 case $1 in
     up)
 	# Set the volume on (if it was muted)
-	amixer set Master on > /dev/null
+	# amixer set Master on > /dev/null
 	# Up the volume (+ 5%)
-	amixer sset Master 3%+ > /dev/null
+	# amixer sset Master 3%+ > /dev/null
+	pactl set-sink-mute 0 0 > /dev/null
+	pactl set-sink-volume 0 +3% > /dev/null
 	send_notification
 	;;
     down)
-	amixer set Master on > /dev/null
-	amixer sset Master 3%- > /dev/null
+	pactl set-sink-mute 0 0 > /dev/null
+	pactl set-sink-volume 0 -3% > /dev/null
+	# amixer set Master on > /dev/null
+	# amixer sset Master 3%- > /dev/null
 	send_notification
 	;;
     mute)

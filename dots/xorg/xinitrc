@@ -9,8 +9,8 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # picom --experimental-backends --blur-method dual_kawase &
 xrdb ~/.Xresources
 #wal -i ~/git/walls/fightclub.jpeg &
-#nitrogen --restore &
-feh --bg-fill --randomize /home/gs/walls
+nitrogen --restore &
+# feh --bg-fill --randomize /home/gs/walls
 xbindkeys &
 sxhkd &
 xinput --set-prop 12 'libinput Accel Speed' -0.7 &
