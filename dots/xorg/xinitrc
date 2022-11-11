@@ -25,4 +25,5 @@ nm-applet &
 volctl &
 xinput float 15 &
 copyq &
+lxqt-powermanagement &
 exec dwm 2> ~/dwm.log

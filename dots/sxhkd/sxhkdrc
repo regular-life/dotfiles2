@@ -9,3 +9,9 @@ F9
 
 F7
 	playerctl previous
+
+XF86MonBrightnessUp
+	brightness.sh up
+
+XF86MonBrightnessDown
+	brightness.sh down

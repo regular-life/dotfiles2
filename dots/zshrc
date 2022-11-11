@@ -140,3 +140,5 @@ bindkey "^[[B" down-line-or-history
 
 # bindkey -M "jk" vi-movement-mode
 bindkey -M viins 'jk' vi-cmd-mode
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
