@@ -66,3 +66,11 @@ if [[ -d $HOME/.config/sublime-text-3/Packages ]]; then
   rm -rf $HOME/.config/sublime-text-3/Packages/User
   ln --verbose -s $current_dir/dots/sublime-text-3/User $HOME/.config/sublime-text-3/Packages/
 fi
+
+
+# install packer
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+nvim -c "PackerInstall"
+nvim -c "PackerUpdate"
+nvim -c "PackerSync"
