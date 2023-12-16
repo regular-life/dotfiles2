@@ -1,1 +1,29 @@
-exec xfwm4
+#!/bin/sh
+export QT_QPA_PLATFORMTHEME=gtk2
+export LC_ALL="en_US.UTF-8"
+export PATH="${PATH}:${HOME}/.local/bin"
+export QT_STYLE_OVERRIDE=gtk2
+# export gtk-application-prefer-dark-theme = true
+export _GTK_THEME_VARIANT=dark
+export _JAVA_AWT_WM_NONREPARENTING=1
+# picom_kawase &
+picom --backend glx --blur-method dual_kawase &
+forWallpaper > ~/forWallpaper.log &
+#wal -i ~/git/walls/fightclub.jpeg &
+# nitrogen --restore &
+xbindkeys &
+sxhkd &
+xinput --set-prop 12 'libinput Accel Speed' -0.7 &
+dunst -conf ~/.cache/wal/dunstrc &
+# qbittorrent &
+flameshot &
+mpdas &
+mpd &
+mpDris2 &
+slstatus &
+nm-applet &
+volctl &
+xinput float 15 &
+copyq &
+lxqt-powermanagement &
+exec dwm 2> ~/dwm.log

@@ -24,12 +24,15 @@ alias music1='tmux new-session "tmux source-file ~/.config/ncmpcpp/tmux_session"
 alias paci='sudo pacman -S' 
 alias compile='sudo make clean install' 
 alias music='~/.config/ncmpcpp/ncmpcpp-ueberzug/ncmpcpp-ueberzug'
-alias picom_kawase='picom --experimental-backends --blur-method dual_kawase'
+alias picom_kawase='picom --backend glx --blur-method dual_kawase'
 alias news='newsboat'
 alias exp='chmod +x'
 alias update='sudo pacman -Syu' --noconfirm
 alias py='python'
-alias code='codium'
+alias switch-ls='/home/yash/Codes/wall-lock-bg-runner/forLockscreen'
+alias switch-wp='/home/yash/Codes/wall-lock-bg-runner/forWallpaper'
+alias intellij='intellij-idea-community'
+# alias code='codium'
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -106,8 +109,8 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# Compilation flayash
+# export ARCHFLAyash="-arch x86_64"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -145,21 +148,57 @@ bindkey "^[[B" down-line-or-history
 bindkey -M viins 'jk' vi-cmd-mode
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-declare -a arr=("█▀▀ █▀
-█▄█ ▄█" "░██████╗░░██████╗
-██╔════╝░██╔════╝
-██║░░██╗░╚█████╗░
-██║░░╚██╗░╚═══██╗
-╚██████╔╝██████╔╝
-░╚═════╝░╚═════╝░" "   ___________
-  / ____/ ___/
- / / __ \__ \ 
-/ /_/ /___/ / 
-\____//____/")
+# declare -a arr=("█▀▀ █▀
+# █▄█ ▄█" "░██████╗░░██████╗
+# ██╔════╝░██╔════╝
+# ██║░░██╗░╚█████╗░
+# ██║░░╚██╗░╚═══██╗
+# ╚██████╔╝██████╔╝
+# ░╚═════╝░╚═════╝░" "   ___________
+#   / ____/ ___/
+# / / __ \__ \ 
+# / /_/ /___/ / 
+# \____//____/" )
+
+declare -a arr=("                    __  
+  __  ______ ______/ /_ 
+  / / / / __ \`/ ___/ __ \ 
+/ /_/ / /_/ (__  ) / / / 
+\__, /\__,_/____/_/ /_/ 
+/____/                   ")
 
 arr_size=${#arr[@]}
 ind=$((1 + $RANDOM % $arr_size))
-# printf '%s\n' "${(%):-%F{green}${arr[$ind]}${(%):-%f}"
+# neofetch
+printf '%s\n' "${(%):-%F{green}${arr[$ind]}${(%):-%f}"
+
+# get_wifi_status() {
+#     local wifi_status="$(iw dev | awk '/ssid/ {print $2}')"
+#     if [ -n "$wifi_status" ]; then
+#         echo -n "$fg[blue]WiFi: Connected to $wifi_status"
+#     else
+#         echo -n "$fg[blue]WiFi: Disconnected"
+#     fi
+# }
+
+# get_bluetooth_status() {
+#     local bluetooth_status="$(bluetoothctl info | grep "Connected: yes" | awk '{print $2}')"
+#     if [ -n "$bluetooth_status" ]; then
+#         echo -n "$fg[blue]Bluetooth: Connected to $bluetooth_status"
+#     else
+#         echo -n "$fg[blue]Bluetooth: Disconnected"
+#     fi
+# }
+
+# print_status() {
+#     local wifi_status="$(get_wifi_status)"
+#     local bluetooth_status="$(get_bluetooth_status)"
+
+#     echo "$wifi_status"
+#     echo "$bluetooth_status"
+# }
+
+# print_status
 
 # Codon compiler path (added by install script)
-export PATH=/home/gs/.codon/bin:$PATH
+export PATH=/home/yash/.codon/bin:$PATH
