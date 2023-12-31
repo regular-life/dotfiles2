@@ -27,7 +27,7 @@ alias music='~/.config/ncmpcpp/ncmpcpp-ueberzug/ncmpcpp-ueberzug'
 alias picom_kawase='picom --backend glx --blur-method dual_kawase'
 alias news='newsboat'
 alias exp='chmod +x'
-alias update='sudo pacman -Syu' --noconfirm
+alias update='sudo pacman -Syu && yay -Syu && sudo snap refresh' --noconfirm
 alias py='python'
 alias switch-ls='/home/yash/Codes/wall-lock-bg-runner/forLockscreen'
 alias switch-wp='/home/yash/Codes/wall-lock-bg-runner/forWallpaper'
@@ -202,3 +202,4 @@ printf '%s\n' "${(%):-%F{green}${arr[$ind]}${(%):-%f}"
 
 # Codon compiler path (added by install script)
 export PATH=/home/yash/.codon/bin:$PATH
+
